@@ -1,4 +1,4 @@
-package com;
+package bs;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -51,7 +51,7 @@ public class Crypto {
     }
 
 
-     byte[] encryptData(String plaintext) throws Exception {
+     public byte[] encryptData(String plaintext) throws Exception {
         SecretKey secretKey;
 
         if (!keyStore.isKeyEntry(alias)) {
@@ -69,7 +69,7 @@ public class Crypto {
         return cipher.doFinal(plaintext.getBytes(StandardCharsets.UTF_8));
     }
 
-     String decryptData(byte[] plaintTextByteArray) throws Exception {
+     public String decryptData(byte[] plaintTextByteArray) throws Exception {
         SecretKey secretKey = (SecretKey) keyStore.getKey(alias, pwd);
 
         inputStream = new FileInputStream("KeyStore.ks");

@@ -1,4 +1,4 @@
-package com;
+package entites;
 
 public class Users {
 

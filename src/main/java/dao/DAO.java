@@ -1,4 +1,4 @@
-package com;
+package dao;
 
 import java.sql.*;
 

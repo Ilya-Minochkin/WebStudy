@@ -7,15 +7,14 @@ import java.util.Base64;
 
 import bs.Crypto;
 import dao.DAO;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.SpringApplication;
 
 
-@SpringBootApplication
+
+//@SpringBootApplication
 public class Main {
 
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+  //      SpringApplication.run(Main.class, args);
         Array array;
         String text = "QWERTY";
         byte[] buff;

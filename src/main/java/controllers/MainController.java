@@ -4,10 +4,12 @@ package controllers;
 import entites.BaseResponse;
 import entites.PaymentRequest;
 import entites.Users;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-@RequestMapping("/payment")
+@Controller
 public class MainController {
 
     public static final String sharedKey = "SHARED_KEY";
@@ -16,24 +18,17 @@ public class MainController {
     private static final int CODE_SUCCES = 100;
     private static final int AUTH_FAILURE = 102;
 
-    @GetMapping
-    public BaseResponse showStatus(){
-        return new BaseResponse(SUCCES_STATUS, 1);
+    @RequestMapping(value = "/user")
+    public ModelAndView user(){
+        return new ModelAndView("user", "command", new Users());
     }
 
-    @PostMapping("/pay")
-    public BaseResponse pay(@RequestParam(value="SHARED_KEY") String key, @RequestBody PaymentRequest request) {
-        final BaseResponse response;
-
-        if (sharedKey.equalsIgnoreCase(key)) {
-            int userId = request.getUserId();
-            String itemId = request.getItemId();
-            double discount = request.getDiscount();
-
-            response = new BaseResponse(SUCCES_STATUS, CODE_SUCCES);
-        } else {
-            response = new BaseResponse(ERROR_STATUS, AUTH_FAILURE);
-        }
-        return response;
+    @RequestMapping(value = "/addUser")
+    public String addStudent(@ModelAttribute("SpringWeb") Users user
+                            , ModelMap model){
+        model.addAttribute("name", user.getUserName());
+        model.addAttribute("password", user.getPassword());
+        model.addAttribute("userID", user.getId());
+        return "result";
     }
 }
